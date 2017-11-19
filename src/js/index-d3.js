@@ -55,7 +55,7 @@ var chatUI = (function (container) {
     }
   };
 
-  module.types['select'] = function(bubble, options, callback){
+  module.types.select = function(bubble, options, callback){
     bubble.select('.cb-choice').data(options.value).enter().append('div')
       .attr('class', 'cb-choice')
       .text(function(d){ return d.label; })
@@ -65,7 +65,7 @@ var chatUI = (function (container) {
       });
   };
 
-  module.types['text'] = function (bubble, options, callback) {
+  module.types.text = function (bubble, options, callback) {
     if (('delay' in options) && options.delay) {
       var animatedCircles = '<div class="circle"></div><div class="circle"></div><div class="circle"></div>';
       bubble.append('div')
