@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "jshint src/js/",
-    "prebuild": "npm run lint",
+    "doc": "./node_modules/.bin/jsdoc ./src/js/index-d3.js --destination docs",
+    "prebuild": "npm run lint && npm run doc",
     "build": "node build.js"
   },
   "repository": {
@@ -29,6 +30,7 @@
   "homepage": "https://github.com/svift-org/ChatUI#readme",
   "devDependencies": {
     "fs": "0.0.1-security",
+    "jsdoc": "^3.5.5",
     "jshint": "^2.9.5",
     "node-sass": "^4.7.1",
     "uglify-js2": "^2.1.11"

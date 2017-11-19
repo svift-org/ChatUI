@@ -13,6 +13,8 @@ Try it out: gh-pages
 
 ## Usage
 
+More details can be found in the docs.
+
 Select a container element (e.g. div) and send it to the constructor. Make sure set the height for that element (see examples/d3.html).
 
 ```javascript
@@ -95,6 +97,10 @@ cb.addBubble({type:'hello', class:'human'});
 ```
 
 An example for an extension is provided in examples/extend.html
+
+## Styling
+
+Most of the things you will likely want to change you can find in the src/css/variables.scss. All ChatUI classes and ids use the namespace 'cb-' Most importantly the icons for human and bot can be changed from build/assets/...
 
 ## Other useful Functions
 
