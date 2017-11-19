@@ -54,6 +54,7 @@ chat.addBubble({
 }, function(){
   //callback is called after delay is over
 });
+```
 
 ```javascript
 //Select Bubble
