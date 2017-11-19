@@ -21,3 +21,5 @@ files.forEach(function(file){
 
   fs.writeFileSync(__dirname + "/build/" + base[0] + ".min.js", min.code, 'utf8')
 })
+
+console.log('build complete')

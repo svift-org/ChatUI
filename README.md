@@ -1,3 +1,5 @@
+![ChatUI]()
+
 # ChatUI
 A javascript chatbot library for frontend / UI development
 
@@ -16,8 +18,8 @@ There are already many javascript chatbot libraries on the market. Why another o
 The library comes in three flavors:
 
 - Standalone (chatui[.min].js)
-- D3 (chatui-d3[.min].js) | https://d3js.org
-- jQuery (chatui-jquery[.min].js) | https://jquery.com
+- D3 (chatui-d3[.min].js) | https://d3js.org (v4)
+- jQuery (chatui-jquery[.min].js) | https://jquery.com (v3)
 
 Underlying dependencies are not inlcuded. 
 
@@ -31,3 +33,21 @@ Beyond the internal differences between the flavors, there are two important dif
 
 #### 2. Building Objects
 
+  //Default Bubble Types
+  //The individual types are being organised this way in order to make it as easy as possible to extend the basic types.
+  //cb.types['custom-1'] = function(bubble, options, callback){ custom_code; };
+
+  /*
+
+ //Example for custom bubble type
+
+ var hw = 0;
+ cb.types['hello'] = function(bubble, options, callback){
+   hw++;
+   bubble.append('p').text('Hello World ('+hw+')');
+ };
+
+ cb.addBubble({type:'hello', class:'bot'});
+ cb.addBubble({type:'hello', class:'human'});
+
+ */
