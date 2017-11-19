@@ -9,11 +9,16 @@ A javascript chatbot library for frontend / UI development
 
 There are already many javascript chatbot libraries on the market. Why another one? Most chatbot libraries and frameworks mix MVC patterns. Many libraries for example already inlcude some kind of logic to organize and handle the conversation with the user. This makes it difficult to implement them if you have your own ideas for handling the input and maybe even already your own logic module. Therefore, we decided to completely separate frontend (view) and logic (controller, model). ChatUI is simply helping you get your chat UI going.
 
-Try it out: gh-pages
+Try it out:
+- [D3](https://svift-org.github.io/ChatUI/examples/d3.html)
+- [Complex](https://svift-org.github.io/ChatUI/examples/complex.html)
+- [Extend](https://svift-org.github.io/ChatUI/examples/extend.html)
+- [jQuery](https://svift-org.github.io/ChatUI/examples/jquery.html) (STILL IN THE MAKING)
+- [Standalone](https://svift-org.github.io/ChatUI/examples/standalone.html) (STILL IN THE MAKING)
 
 ## Usage
 
-More details can be found in the docs.
+More details can be found in the [docs](https://svift-org.github.io/ChatUI/docs/chatUI.html).
 
 Select a container element (e.g. div) and send it to the constructor. Make sure set the height for that element (see examples/d3.html).
 
