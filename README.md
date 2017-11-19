@@ -3,6 +3,8 @@
 # ChatUI
 A javascript chatbot library for frontend / UI development
 
+![ChatUI](https://github.com/svift-org/ChatUI/blob/master/README/Snapshot.png?raw=true)
+
 ## Introduction
 
 There are already many javascript chatbot libraries on the market. Why another one? Most chatbot libraries and frameworks mix MVC patterns. Many libraries for example already inlcude some kind of logic to organize and handle the conversation with the user. This makes it difficult to implement them if you have your own ideas for handling the input and maybe even already your own logic module. Therefore, we decided to completely separate frontend (view) and logic (controller, model). ChatUI is simply helping you get your chat UI going.
@@ -56,7 +58,7 @@ Beyond the internal differences between the flavors, there are two important dif
 
 ![SVIFT](https://github.com/svift-org/ChatUI/blob/master/README/svift.png?raw=true)
 
-ChatUI is part of the SVIFT project, a novel system for quickly and easily creating data visualisations for the web, print and video. SVIFT is being developed by [Sebastian Meier](https://github.com/sebastian-meier/), [Alsino Skowronnek](https://github.com/alsino) and [Hans Hack](https://github.com/hanshack).
+ChatUI is part of the [SVIFT](http://svift.xyz) project, a novel system for quickly and easily creating data visualisations for the web, print and video. [SVIFT](http://svift.xyz) is being developed by [Sebastian Meier](https://github.com/sebastian-meier/), [Alsino Skowronnek](https://github.com/alsino) and [Hans Hack](https://github.com/hanshack).
 
 The project is being supported by http://www.miz-babelsberg.de
 

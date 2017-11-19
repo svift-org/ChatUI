@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+  <title>ChatUI</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../build/chatUI.css">
+  <meta name="viewport" content="width=device-width">
+  <style>
+    html, body{
+      margin:0;
+      padding:0;
+      border:0;
+    }
+    #chatbot{
+      width:100%;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="chatbot">
+  </div>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="../build/index-d3.min.js"></script>
+  <script type="text/javascript">
+
+    var chat = chatUI(d3.select('#chatbot'));
+
+    //Add Text saying 'Hi there!', with a typing delay of 1000ms
+    chat.addBubble({ type: 'text', value: 'Hi there!', class: 'bot', delay: 1000 }, function () {
+
+      //After initial bubble is presented, ask the user for her name
+      chat.addBubble({ type: 'text', value: 'What is your name?', class: 'bot', delay: 0 });
+
+      //Show the input container
+      chat.showInput(function(input){
+
+        //As input arrives, present the input
+        chat.addBubble({ type: 'text', value: input, class: 'human', delay: 0 });
+
+        //Hide the input container
+        chat.hideInput();
+
+        //And welcome the user with her name
+        chat.addBubble({ type: 'text', value: 'Hello '+input, class: 'bot', delay: 500 });
+
+      });
+    });
+
+  </script>
+</body>
+</html>

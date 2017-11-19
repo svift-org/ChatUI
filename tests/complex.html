@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<head>
+  <title>ChatUI</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../build/chatUI.css">
+  <meta name="viewport" content="width=device-width">
+  <style>
+    html, body{
+      margin:0;
+      padding:0;
+      border:0;
+    }
+    #chatbot{
+      width:100%;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="chatbot">
+  </div>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="../build/index-d3.min.js"></script>
+  <script type="text/javascript">
+
+    var chat = chatUI(d3.select('#chatbot'));
+
+    var conversation = {},
+      userName = null;
+
+    conversation.init = function(){
+      chat.addBubble({ type: 'text', value: 'Hi there!', class: 'bot', delay: 1000 }, function () {
+
+        //After initial bubble is presented, ask the user for her name
+        chat.addBubble({ type: 'text', value: 'What is your name?', class: 'bot', delay: 0 });
+
+        //Show the input container
+        chat.showInput(conversation.nameResponse);
+
+      });
+    };
+
+    conversation.nameResponse = function(name){
+      userName = name;
+
+      //As input arrives, present the input
+      chat.addBubble({ type: 'text', value: userName, class: 'human', delay: 0 });
+
+      //Hide the input container
+      chat.hideInput();
+
+      //And welcome the user with her name
+      chat.addBubble({ type: 'text', value: 'Hello '+userName, class: 'bot', delay: 500 }, function(){
+        chat.addBubble({ type: 'text', value: 'Do you want to know my name?', class: 'bot', delay:500 }, function(){
+
+          chat.addBubble({ type: 'select', value:[{label:'Yes'}, {label:'No'}], class: 'human', delay: 0 }, conversation.questResponse);
+
+        });
+      });
+    };
+
+    conversation.questResponse = function(mood){
+      switch(mood.label){
+        case 'Yes':
+          chat.addBubble({ type: 'text', value: 'My name is BOT.', class: 'bot', delay: 500 });
+        break;
+        case 'No':
+          chat.addBubble({ type: 'text', value: 'OK :(', class: 'bot', delay: 500 });
+        break;
+      }
+    };
+
+    conversation.init();
+
+  </script>
+</body>
+</html>

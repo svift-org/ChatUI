@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="21px" viewBox="0 0 20 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon-Robot</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group">
+            <circle id="Oval-3" fill="#FFFFFF" cx="10" cy="12" r="8"></circle>
+            <circle id="Oval-3-Copy" fill="#FFFFFF" cx="1.5" cy="1.5" r="1.5"></circle>
+            <path d="M10.6153846,12.5714286 L1.38461538,1.42857143" id="Line-2" stroke="#FFFFFF" stroke-linecap="square"></path>
+            <g id="Group-2" transform="translate(14.500000, 6.500000) scale(-1, 1) translate(-14.500000, -6.500000) translate(9.000000, 0.000000)">
+                <circle id="Oval-3-Copy" fill="#FFFFFF" cx="1.5" cy="1.5" r="1.5"></circle>
+                <path d="M10.6153846,12.5714286 L1.38461538,1.42857143" id="Line-2" stroke="#FFFFFF" stroke-linecap="square"></path>
+            </g>
+            <circle id="Oval-4" fill="#77589C" cx="8" cy="9" r="1"></circle>
+            <circle id="Oval-4-Copy" fill="#77589C" cx="12" cy="9" r="1"></circle>
+            <path d="M7,14.022977 C8.33228762,14.6590077 9.33228762,14.977023 10,14.977023 C10.6677124,14.977023 11.6677124,14.6590077 13,14.022977" id="Line-3" stroke="#77589C" stroke-linecap="square"></path>
+        </g>
+    </g>
+</svg>

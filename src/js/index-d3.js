@@ -2,17 +2,26 @@ var chatUI = (function (container) {
   
   var module = {};
 
-  module.container = container;
+  module.container = container.append('div').attr('id', 'cb-container');
   module.config = null;
   module.bubbles = [];
   module.ID = 0;
   module.keys = {};
   module.types = {};
-  module.scroll = container.append('div').attr('id', 'cb-flow');
+  module.inputState = false;
+  module.height = 0;
+  module.scroll = module.container.append('div').attr('id', 'cb-flow');
   module.flow = module.scroll.append('div').attr('class', 'cb-inner');
-  module.input = container.append('div').attr('id', 'cb-input').style('display', 'none');
-  module.input.append('input').attr('type', 'text');
+  module.input = module.container.append('div').attr('id', 'cb-input').style('display', 'none');
+  module.input.append('div').attr('id','cb-input-container').append('input').attr('type', 'text');
   module.input.append('button').text('+');
+
+  module.updateContainer = function(){
+      module.height = module.container.node().offsetHeight;
+      module.flow.style('padding-top', module.height+'px');
+      module.scroll.style('height', (module.height-((module.inputState==true)?77:0))+'px');
+      module.scrollTo('end');
+  };
 
   module.addBubble = function (options, callback) {
     callback = callback || function () { };
@@ -32,7 +41,7 @@ var chatUI = (function (container) {
 
       //segment container
       var outer = module.flow.append('div')
-        .attr('class', 'cb-segment cb-' + options.class)
+        .attr('class', 'cb-segment cb-' + options.class + ' cb-bubble-type-' + options.type)
         .attr('id', 'cb-segment-' + id);
 
       //speaker icon
@@ -56,11 +65,12 @@ var chatUI = (function (container) {
   };
 
   module.types.select = function(bubble, options, callback){
-    bubble.select('.cb-choice').data(options.value).enter().append('div')
+    bubble.selectAll('.cb-choice').data(options.value).enter().append('div')
       .attr('class', 'cb-choice')
       .text(function(d){ return d.label; })
       .on('click', function(d){
-        d3.select('this').classed('cb-active', true);
+        d3.select(this).classed('cb-active', true);
+        d3.select(this.parentNode).selectAll('.cb-choice').on('click', function(){});
         callback(d);
       });
   };
@@ -75,28 +85,31 @@ var chatUI = (function (container) {
       setTimeout(function () {
 
         bubble.select(".cb-waiting").remove();
-        appendText(bubble, options, callback);
+        module.appendText(bubble, options, callback);
 
       }, (isNaN(options.delay) ? 1000 : options.delay));
     } else {
-      appendText(bubble, options, callback);
-    }
-
-    function appendText(bubble, options, callback) {
-      bubble.attr('class', 'bubble-ctn-' + options.class).append('p')
-        .style("width", "50px")
-        .html(options.value)
-        .transition()
-        .duration(200)
-        .style("width", "auto")
-        .style('opacity', 1);
-
-      callback();
+      module.appendText(bubble, options, callback);
     }
 
   };
 
+  module.appendText = function(bubble, options, callback) {
+    bubble.attr('class', 'bubble-ctn-' + options.class).append('p')
+      .html(options.value)
+      .transition()
+      .duration(200)
+      .style("width", "auto")
+      .style('opacity', 1);
+
+    chat.scrollTo('end');
+
+    callback();
+  };
+
   module.showInput = function (submitCallback, typeCallback) {
+    module.inputState = true;
+
     if (typeCallback) {
       module.input.select('input')
         .on('change', function () {
@@ -106,22 +119,31 @@ var chatUI = (function (container) {
       module.input.select('input').on('change', function () { });
     }
 
+    module.input.select('input').on('keyup', function () {
+        if (d3.event.keyCode == 13) {
+          submitCallback(module.input.select('input').node().value);
+          module.input.select('input').node().value = '';      
+        }
+    });
+
     module.input.select('button')
       .on('click', function () {
         submitCallback(module.input.select('input').node().value);
+        module.input.select('input').node().value = '';
       });
 
     module.input.style('display', 'block');
-    module.flow.classed('cb-w-input', true);
+    module.updateContainer();
 
-    //TODO: set focus -> check if this works
-    module.input.select('input').node().blur();
+    module.input.select('input').node().focus();
     module.scrollTo('end');
   };
 
   module.hideInput = function () {
+    module.input.select('input').node().blur();
     module.input.style('display', 'none');
-    module.flow.classed('cb-w-input', false);
+    module.inputState = false;
+    module.updateContainer();
     module.scrollTo('end');
   };
 
@@ -150,7 +172,7 @@ var chatUI = (function (container) {
     var s = 0;
     //end
     if (position == 'end') {
-      s = module.scroll.property('scrollHeight') - window.innerHeight;
+      s = module.scroll.property('scrollHeight') - (window.innerHeight-77);
     }
     d3.select('#cb-flow').transition()
       .duration(300)
@@ -164,6 +186,24 @@ var chatUI = (function (container) {
       return function (t) { module.scroll.property('scrollTop', i(t)); };
     };
   }
+
+  function debouncer( func , _timeout ) {
+    var timeoutID , timeout = _timeout || 200;
+    return function () {
+      var scope = this , args = arguments;
+      clearTimeout( timeoutID );
+      timeoutID = setTimeout( function () {
+        func.apply( scope , Array.prototype.slice.call( args ) );
+      } , timeout );
+    };
+  }
+
+  //On Resize scroll to end
+  d3.select(window).on('resize', debouncer(function(e){
+      module.updateContainer();
+  }, 200));
+
+  module.updateContainer();
 
   return module;
 });

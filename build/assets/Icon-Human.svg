@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="21px" viewBox="0 0 20 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon-Human</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(-130.000000, 0.000000)">
+            <circle id="Oval-3" stroke="#3F4F47" cx="140" cy="11" r="8"></circle>
+            <circle id="Oval-4" fill="#353535" cx="138" cy="9" r="1"></circle>
+            <circle id="Oval-4-Copy" fill="#353535" cx="142" cy="9" r="1"></circle>
+            <path d="M137,14.022977 C138.332288,14.6590077 139.332288,14.977023 140,14.977023 C140.667712,14.977023 141.667712,14.6590077 143,14.022977" id="Line-3" stroke="#353535" stroke-linecap="square"></path>
+        </g>
+    </g>
+</svg>
