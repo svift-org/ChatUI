@@ -1,0 +1,10 @@
+{
+ "esnext":"false",
+ "noyield":"true",
+ "unused":"false",
+ "globals":{
+  "d3":"true",
+  "$":"true",
+  "jQuery":"true"
+ }
+}

@@ -1,0 +1,50 @@
+/* --- FONTS --- */
+
+/* Font families*/
+$font-family-mono: Helvetica, Arial, sans-serif;
+$font-family-bold: Helvetica, Arial, sans-serif;
+
+/* --- COLORS --- */
+
+/* Brand Colors */
+$svift-primary: rgba(113, 96, 155, 1);
+$svift-human: #75FABF;
+$svift-delete: #FF5858;
+
+/* Background Colors */
+$bg-light-grey: #F4F4F4;
+$white: #fff;
+$black: #000;
+$table-background: rgb(238, 238, 238);
+
+/* Bot Colors */
+$bot-bubble: #E6E6E6;
+$bot-bubble-waiting-start: #98979C;
+$bot-bubble-waiting-end: #AFAFB2;
+
+/* Text Colors */
+$text-bot: #3A3A3A;
+$text-subheading: #9a9a9a;
+$text-disabled: #9a9a9a;
+
+/* Box shadow*/
+$box-shadow-default: 0 0 30px rgba(0, 0, 0, 0.2);
+
+/* --- PADDINGS & MARGINS, ETC. --- */
+
+/* Padding-Bot */
+$padding-bubble: 1%;
+$padding-bubble-inner: 10px 10px 10px 10px;
+
+/* Margin */
+$margin-small: 10px;
+
+/* Border radii*/
+$border-radius-default: 4px;
+$border-radius-circle: 100px;
+
+/* --- BORDERS --- */
+
+/* Borders */
+$border-default: 1px solid #D8D8D8;
+$border-disabled: 3px solid #D8D8D8;

@@ -1,0 +1,36 @@
+{
+  "name": "chatui",
+  "version": "1.0.0",
+  "description": "A javascript chatbot library for frontend / UI development",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "jshint src/js/",
+    "prebuild": "npm run lint",
+    "build": "node build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svift-org/ChatUI.git"
+  },
+  "keywords": [
+    "conversational",
+    "chatbot",
+    "chat",
+    "ui",
+    "interface",
+    "js"
+  ],
+  "author": "Sebastian Meier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/svift-org/ChatUI/issues"
+  },
+  "homepage": "https://github.com/svift-org/ChatUI#readme",
+  "devDependencies": {
+    "fs": "0.0.1-security",
+    "jshint": "^2.9.5",
+    "node-sass": "^4.7.1",
+    "uglify-js2": "^2.1.11"
+  }
+}
