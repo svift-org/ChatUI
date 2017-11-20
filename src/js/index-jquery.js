@@ -1,7 +1,7 @@
 /**
  * chatUI constructor
  * @constructor
- * @param {d3-selection} container - Container for the chat interface.
+ * @param {jquery-selection} container - Container for the chat interface.
  * @return {object} chatUI object
  */
 var chatUI = (function (container) {
@@ -76,7 +76,7 @@ var chatUI = (function (container) {
 
   /**
    * @memberof chatUI
-   * @param {d3-selection} bubble - d3 selection of the bubble container
+   * @param {jquery-selection} bubble - jquery selection of the bubble container
    * @param {object} options - object containing configs {type:'text', class:string ('human' || 'bot'), value:array of objects (e.g. [{label:'yes'}])}
    * @param {function} callback - function to be called after everything is done
    */
@@ -92,7 +92,7 @@ var chatUI = (function (container) {
 
   /**
    * @memberof chatUI
-   * @param {d3-selection} bubble - d3 selection of the bubble container
+   * @param {jquery-selection} bubble - jquery selection of the bubble container
    * @param {object} options - object containing configs {type:'text', class:string ('human' || 'bot'), value:string (e.g. 'Hello World')}
    * @param {function} callback - function to be called after everything is done
    */
@@ -115,7 +115,7 @@ var chatUI = (function (container) {
   /**
    * Helper Function for adding text to a bubble
    * @memberof chatUI
-   * @param {d3-selection} bubble - d3 selection of the bubble container
+   * @param {jquery-selection} bubble - jquery selection of the bubble container
    * @param {object} options - object containing configs {type:'text', class:string ('human' || 'bot'), value:string (e.g. 'Hello World')}
    * @param {function} callback - function to be called after everything is done
    */
@@ -141,31 +141,31 @@ var chatUI = (function (container) {
     module.inputState = true;
 
     if (typeCallback) {
-      module.input.select('input')
+      module.input.find('input')
         .on('change', function () {
-          typeCallback(d3.select(this).node().value);
+          typeCallback($(this).val());
         });
     } else {
-      module.input.select('input').on('change', function () { });
+      module.input.find('input').on('change', function () { });
     }
 
-    module.input.select('input').on('keyup', function () {
-        if (d3.event.keyCode == 13) {
-          submitCallback(module.input.select('input').node().value);
-          module.input.select('input').node().value = '';      
+    module.input.find('input').on('keyup', function (e) {
+        if (e.keyCode == 13) {
+          submitCallback(module.input.find('input').val());
+          module.input.find('input').val('');      
         }
     });
 
-    module.input.select('button')
+    module.input.find('button')
       .on('click', function () {
-        submitCallback(module.input.select('input').node().value);
-        module.input.select('input').node().value = '';
+        submitCallback(module.input.find('input').val());
+        module.input.find('input').val('');
       });
 
     module.input.css('display', 'block');
     module.updateContainer();
 
-    module.input.select('input').node().focus();
+    module.input.find('input').focus();
     module.scrollTo('end');
   };
 
@@ -173,7 +173,7 @@ var chatUI = (function (container) {
    * Hide the input module
    */
   module.hideInput = function () {
-    module.input.select('input').node().blur();
+    module.input.find('input').blur();
     module.input.css('display', 'none');
     module.inputState = false;
     module.updateContainer();
@@ -186,7 +186,7 @@ var chatUI = (function (container) {
    * @param {integer} id - id of bubble provided by addBubble
    */
   module.removeBubble = function (id) {
-    module.flow.select('#cb-segment-' + id).remove();
+    module.flow.find('#cb-segment-' + id).remove();
     module.bubbles.splice(module.keys[id], 1);
     delete module.keys[id];
   };
@@ -206,11 +206,11 @@ var chatUI = (function (container) {
    * Remove all bubbles until the bubble with 'id' from the chat
    * @memberof chatUI
    * @param {integer} id - id of bubble provided by addBubble
-   * @return {object} obj - {el:d3-selection, obj:bubble-data}
+   * @return {object} obj - {el:jquery-selection, obj:bubble-data}
    */
   module.getBubble = function (id) {
     return {
-      el: module.flow.select('#cb-segment-' + id),
+      el: module.flow.find('#cb-segment-' + id),
       obj: module.bubbles[module.keys[id]]
     };
   };
@@ -225,20 +225,11 @@ var chatUI = (function (container) {
     var s = 0;
     //end
     if (position == 'end') {
-      s = module.scroll.property('scrollHeight') - (window.innerHeight-77);
+      s = document.getElementById("cb-flow").scrollHeight - (window.innerHeight-77);
     }
-    d3.select('#cb-flow').transition()
-      .duration(300)
-      .tween("scroll", scrollTween(s));
 
+    $('#cb-flow').stop().animate({scrollTop:s}, 300);
   };
-
-  function scrollTween(offset) {
-    return function () {
-      var i = d3.interpolateNumber(module.scroll.property('scrollTop'), offset);
-      return function (t) { module.scroll.property('scrollTop', i(t)); };
-    };
-  }
 
   function debouncer( func , _timeout ) {
     var timeoutID , timeout = _timeout || 200;
@@ -252,7 +243,7 @@ var chatUI = (function (container) {
   }
 
   //On Resize scroll to end
-  d3.select(window).on('resize', debouncer(function(e){
+  $(window).on('resize', debouncer(function(e){
       module.updateContainer();
   }, 200));
 
