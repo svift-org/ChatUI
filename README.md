@@ -150,6 +150,14 @@ Beyond the internal differences between the flavors, there are two important dif
 
 #### 1. Initialisation
 
+```javascript
+//jquery
+var chat = chatUI($('#chatbot'));
+
+//d3
+var chat = chatUI(d3.select('#chatbot'));
+```
+
 #### 2. Building Objects
 
 

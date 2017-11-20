@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: index-d3.js</title>
+    <title>JSDoc: Source: index-jquery.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: index-d3.js</h1>
+    <h1 class="page-title">Source: index-jquery.js</h1>
 
     
 
@@ -36,7 +36,7 @@ var chatUI = (function (container) {
   
   var module = {};
 
-  module.container = container.append('div').attr('id', 'cb-container');
+  module.container = container.append('&lt;div id="cb-container">&lt;/div>');
   module.config = null;
   module.bubbles = [];
   module.ID = 0;
@@ -44,11 +44,11 @@ var chatUI = (function (container) {
   module.types = {};
   module.inputState = false;
   module.height = 0;
-  module.scroll = module.container.append('div').attr('id', 'cb-flow');
-  module.flow = module.scroll.append('div').attr('class', 'cb-inner');
-  module.input = module.container.append('div').attr('id', 'cb-input').style('display', 'none');
-  module.input.append('div').attr('id','cb-input-container').append('input').attr('type', 'text');
-  module.input.append('button').text('+');
+  module.scroll = module.container.append('&lt;div id="cb-flow">&lt;/div>');
+  module.flow = module.scroll.append('&lt;div class="cb-inner">&lt;/div>');
+  module.input = module.container.append('&lt;div id="cb-input" style="display:none;">&lt;/div>');
+  module.input.append('&lt;div id="cb-input-container">&lt;input type="text" />&lt;/div>');
+  module.input.append('&lt;button>+&lt;/button>');
 
 
   /**
@@ -56,9 +56,9 @@ var chatUI = (function (container) {
    * @memberof chatUI
    */
    module.updateContainer = function(){
-      module.height = module.container.node().offsetHeight;
-      module.flow.style('padding-top', module.height+'px');
-      module.scroll.style('height', (module.height-((module.inputState==true)?77:0))+'px');
+      module.height = module.container.outerHeight();
+      module.flow.css('padding-top', module.height+'px');
+      module.scroll.css('height', (module.height-((module.inputState==true)?77:0))+'px');
       module.scrollTo('end');
   };
 
@@ -85,21 +85,14 @@ var chatUI = (function (container) {
       module.keys[id] = module.bubbles.length - 1;
 
       //segment container
-      var outer = module.flow.append('div')
-        .attr('class', 'cb-segment cb-' + options.class + ' cb-bubble-type-' + options.type)
-        .attr('id', 'cb-segment-' + id);
+      var outer = module.flow.append('&lt;div class="cb-segment cb-' + options.class + ' cb-bubble-type-' + options.type + '" id="cb-segment-' + id + '">&lt;/div>');
 
       //speaker icon
-      outer.append('div').attr('class', 'cb-icon');
+      outer.append('&lt;div class="cb-icon">&lt;/div>');
 
-      var bubble = outer.append('div')
-        .attr('class', 'cb-bubble ' + options.class)
-        // .style("height", "50px")
-        .append('div')
-        .attr('class', 'cb-inner');
+      var bubble = outer.append('&lt;div class="cb-bubble ' + options.class + '">&lt;div class="cb-inner">&lt;/div>&lt;/div>');
 
-
-      outer.append('hr');
+      outer.append('&lt;hr />');
 
       module.types[options.type](bubble, options, callback);
 
@@ -163,8 +156,8 @@ var chatUI = (function (container) {
       .html(options.value)
       .transition()
       .duration(200)
-      .style("width", "auto")
-      .style('opacity', 1);
+      .css("width", "auto")
+      .css('opacity', 1);
 
     chat.scrollTo('end');
 
@@ -202,7 +195,7 @@ var chatUI = (function (container) {
         module.input.select('input').node().value = '';
       });
 
-    module.input.style('display', 'block');
+    module.input.css('display', 'block');
     module.updateContainer();
 
     module.input.select('input').node().focus();
@@ -214,7 +207,7 @@ var chatUI = (function (container) {
    */
   module.hideInput = function () {
     module.input.select('input').node().blur();
-    module.input.style('display', 'none');
+    module.input.css('display', 'none');
     module.inputState = false;
     module.updateContainer();
     module.scrollTo('end');
