@@ -14,7 +14,6 @@ Try it out:
 - [Complex](https://svift-org.github.io/ChatUI/examples/complex.html)
 - [Extend](https://svift-org.github.io/ChatUI/examples/extend.html)
 - [jQuery](https://svift-org.github.io/ChatUI/examples/jquery.html) (STILL IN THE MAKING)
-- [Standalone](https://svift-org.github.io/ChatUI/examples/standalone.html) (STILL IN THE MAKING)
 
 ## Usage
 
@@ -138,7 +137,6 @@ module.scrollTo('start'||'end');
 
 The library comes in three flavors:
 
-- Standalone (chatui[.min].js) {STILL IN THE MAKING}
 - D3 (chatui-d3[.min].js) | https://d3js.org (v4)
 - jQuery (chatui-jquery[.min].js) | https://jquery.com (v3) {STILL IN THE MAKING}
 
