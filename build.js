@@ -11,7 +11,7 @@ fs.writeFileSync(__dirname + "/build/chatUI.css", sass.renderSync({
 )
 
 //JS Building
-let files = ['index-d3.js', 'index-jquery.js', 'index.js']
+let files = ['index-d3.js', 'index-jquery.js']
 files.forEach(function(file){
   let base = file.split('.'),
   min = UglifyJS.minify([__dirname + "/src/js/"+file], {
